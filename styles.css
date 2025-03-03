@@ -615,3 +615,66 @@ footer {
         font-size: 2rem;
     }
 }
+<style>
+.hero {
+    height: 90vh; /* 高さを拡大 */
+    background: linear-gradient(rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0.7)), url('images/hero-bg.jpg') center/cover no-repeat;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-end; /* コンテンツを下部に配置 */
+    align-items: center;
+    text-align: center;
+    color: var(--text-color);
+    padding: 0 1rem;
+}
+
+.hero-content {
+    margin-bottom: 15%; /* 下部からのマージンを追加 */
+    animation: fadeInUp 1.5s ease;
+}
+
+.hero p {
+    font-size: 1.5rem;
+    max-width: 700px;
+    margin-bottom: 2rem;
+    line-height: 1.8;
+}
+
+.hero .btn {
+    font-size: 1.2rem;
+    padding: 1rem 2rem;
+}
+
+/* モバイル対応の強化 */
+@media (max-width: 768px) {
+    .hero {
+        height: 80vh;
+    }
+    
+    .hero-content {
+        margin-bottom: 20%; /* モバイルでは下部マージンを増やす */
+        width: 90%;
+    }
+    
+    .hero p {
+        font-size: 1.2rem;
+        margin-bottom: 1.5rem;
+    }
+    
+    .hero .btn {
+        font-size: 1rem;
+        padding: 0.8rem 1.5rem;
+    }
+}
+
+/* 小さいスマホ画面用 */
+@media (max-width: 480px) {
+    .hero-content {
+        margin-bottom: 25%;
+    }
+    
+    .hero p {
+        font-size: 1.1rem;
+    }
+}
+</style>
