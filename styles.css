@@ -159,23 +159,23 @@ nav ul li a:hover::after {
 
 /* Hero section - updated for better fit on all screens */
 .hero {
-    height: 70vh; /* Reduced height to fit within viewport */
-    max-height: 600px; /* Maximum height to ensure it fits on all screens */
+    height: 80vh; /* 高さを少し増やして、より大きく表示 */
+    max-height: 700px; /* Maximum height to ensure it fits on all screens */
     background: linear-gradient(rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0.7)), url('images/hero-bg.jpg') center/cover no-repeat;
-    display: flex;
-    flex-direction: column;
-    justify-content: flex-end; /* 変更: center から flex-end へ変更し、下部に配置 */
-    align-items: center;
-    text-align: center;
-    color: var(--text-color);
+    position: relative; /* 位置指定の基準 */
     padding: 0 1rem;
-    position: relative;
+    overflow: hidden; /* 内容がはみ出さないようにする */
 }
 
 .hero-content {
-    margin-bottom: 15%; /* 変更: 下部からのマージンを追加 */
+    position: absolute; /* 絶対位置指定 */
+    bottom: 15%; /* 下から15%の位置に配置 */
+    left: 0;
+    right: 0;
+    text-align: center;
     width: 90%;
     max-width: 800px;
+    margin: 0 auto; /* 左右中央配置 */
     animation: fadeInUp 1s ease;
 }
 
@@ -730,11 +730,11 @@ footer {
     
     /* Hero adjustments for mobile */
     .hero {
-        height: 60vh;
+        height: 70vh;
     }
     
     .hero-content {
-        margin-bottom: 20%; /* モバイルではさらに下に配置 */
+        bottom: 20%; /* モバイルでは下から20%の位置に配置 */
     }
     
     .hero p {
@@ -790,11 +790,11 @@ footer {
     }
     
     .hero {
-        height: 50vh;
+        height: 60vh;
     }
     
     .hero-content {
-        margin-bottom: 20%;
+        bottom: 15%; /* スマホでは少し上に調整 */
     }
     
     .hero p {
