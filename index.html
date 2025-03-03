@@ -44,12 +44,12 @@
     </header>
     
     <!-- Hero Section -->
-<section class="hero">
-    <div class="hero-content">
-        <p>アイドル級・国宝級のセラピストによる、女性のための極上のひととき</p>
-        <a href="#therapists" class="btn btn-primary">セラピスト一覧</a>
-    </div>
-</section>
+    <section class="hero">
+        <div class="hero-content">
+            <p>アイドル級・国宝級のセラピストによる、女性のための極上のひととき</p>
+            <a href="#therapists" class="btn btn-primary">セラピスト一覧</a>
+        </div>
+    </section>
     
     <!-- About Section -->
     <section id="about" class="container">
@@ -211,6 +211,18 @@
         <i class="fas fa-chevron-up"></i>
     </div>
     
+    <!-- Fixed Contact Banner -->
+    <div class="contact-banner">
+        <div class="banner-content">
+            <a href="#contact" class="banner-btn contact-btn">
+                <i class="fas fa-envelope"></i> ご予約・お問い合わせ
+            </a>
+            <a href="#" class="banner-btn line-btn">
+                <i class="fab fa-line"></i> LINE
+            </a>
+        </div>
+    </div>
+    
     <!-- Toast Notification -->
     <div class="toast" id="toast">お知らせが表示されます</div>
     
@@ -218,23 +230,32 @@
     <!-- Therapist Modal -->
     <div class="modal" id="therapist-modal">
         <div class="modal-content">
-            <span class="close-modal" id="close-therapist-modal">&times;</span>
-            <h2 class="modal-title" id="therapist-modal-title">セラピスト詳細</h2>
-            <div class="slideshow" id="therapist-slideshow">
-                <div class="slide active" style="background-image: url('/api/placeholder/600/400');"></div>
-                <div class="slide" style="background-image: url('/api/placeholder/600/400');"></div>
-                <div class="slide" style="background-image: url('/api/placeholder/600/400');"></div>
+            <div class="modal-header">
+                <h2 class="modal-title" id="therapist-modal-title">セラピスト詳細</h2>
+                <span class="close-modal" id="close-therapist-modal">&times;</span>
             </div>
-            <div id="therapist-modal-content"></div>
+            <div class="modal-body">
+                <div class="slideshow" id="therapist-slideshow">
+                    <div class="slide active" style="background-image: url('/api/placeholder/600/400');"></div>
+                    <div class="slide" style="background-image: url('/api/placeholder/600/400');"></div>
+                    <div class="slide" style="background-image: url('/api/placeholder/600/400');"></div>
+                </div>
+                <div id="therapist-modal-content"></div>
+            </div>
+            <div class="modal-footer">
+                <button class="btn btn-secondary modal-back-btn" id="therapist-back-btn">セラピスト一覧に戻る</button>
+            </div>
         </div>
     </div>
     
     <!-- Terms Modal -->
     <div class="modal" id="terms-modal">
         <div class="modal-content">
-            <span class="close-modal" id="close-terms-modal">&times;</span>
-            <h2 class="modal-title">利用規約</h2>
-            <div style="max-height: 400px; overflow-y: auto; padding: 0 10px;">
+            <div class="modal-header">
+                <h2 class="modal-title">利用規約</h2>
+                <span class="close-modal" id="close-terms-modal">&times;</span>
+            </div>
+            <div class="modal-body">
                 <p style="margin-bottom: 1rem;">以下の利用規約（以下「本規約」）は、Dear Princess（以下「当店」）のサービスをご利用いただくにあたり、お客様に同意していただく必要がある事項を記載しています。サービスをご利用される前に必ずお読みください。</p>
                 
                 <h3 style="color: var(--primary-color); margin: 1.5rem 0 0.5rem;">1. サービス内容</h3>
@@ -272,9 +293,11 @@
     <!-- Privacy Policy Modal -->
     <div class="modal" id="privacy-modal">
         <div class="modal-content">
-            <span class="close-modal" id="close-privacy-modal">&times;</span>
-            <h2 class="modal-title">プライバシーポリシー</h2>
-            <div style="max-height: 400px; overflow-y: auto; padding: 0 10px;">
+            <div class="modal-header">
+                <h2 class="modal-title">プライバシーポリシー</h2>
+                <span class="close-modal" id="close-privacy-modal">&times;</span>
+            </div>
+            <div class="modal-body">
                 <p style="margin-bottom: 1rem;">Dear Princess（以下「当店」）は、お客様のプライバシーを尊重し、個人情報の保護に努めます。このプライバシーポリシーでは、当店が収集・利用する個人情報の取り扱いについて説明します。</p>
                 
                 <h3 style="color: var(--primary-color); margin: 1.5rem 0 0.5rem;">1. 収集する個人情報</h3>
@@ -311,9 +334,11 @@
     <!-- Notice Modal -->
     <div class="modal" id="notice-modal">
         <div class="modal-content">
-            <span class="close-modal" id="close-notice-modal">&times;</span>
-            <h2 class="modal-title">注意事項</h2>
-            <div style="max-height: 400px; overflow-y: auto; padding: 0 10px;">
+            <div class="modal-header">
+                <h2 class="modal-title">注意事項</h2>
+                <span class="close-modal" id="close-notice-modal">&times;</span>
+            </div>
+            <div class="modal-body">
                 <p style="margin-bottom: 1rem;">Dear Princessをご利用いただく際の注意事項です。安心・安全なサービス提供のため、以下の事項をご確認ください。</p>
                 
                 <h3 style="color: var(--primary-color); margin: 1.5rem 0 0.5rem;">1. ご予約について</h3>
