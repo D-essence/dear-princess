@@ -75,12 +75,33 @@ document.addEventListener('DOMContentLoaded', function() {
         }, 3000);
     }
     
+    // Fixed Contact Banner 
+    document.querySelectorAll('.banner-btn').forEach(btn => {
+        if (btn.classList.contains('contact-btn')) {
+            btn.addEventListener('click', function(e) {
+                e.preventDefault();
+                document.getElementById('contact').scrollIntoView({
+                    behavior: 'smooth'
+                });
+            });
+        } else if (btn.classList.contains('line-btn')) {
+            btn.addEventListener('click', function(e) {
+                e.preventDefault();
+                showToast('LINE友だち追加ページへ移動します');
+                // 実際のLINEリンクを設定する場合はここにURLを指定
+                // window.location.href = "https://line.me/yourlink";
+            });
+        }
+    });
+    
     // Therapist modal
     const therapistCards = document.querySelectorAll('.therapist-card');
     const therapistModal = document.getElementById('therapist-modal');
     const closeTherapistModal = document.getElementById('close-therapist-modal');
+    const therapistBackBtn = document.getElementById('therapist-back-btn');
     const therapistModalTitle = document.getElementById('therapist-modal-title');
     const therapistModalContent = document.getElementById('therapist-modal-content');
+    let slideshowInterval; // Store slideshow interval for clearing
     
     // Therapist data
     const therapists = {
@@ -150,17 +171,33 @@ document.addEventListener('DOMContentLoaded', function() {
             document.querySelector('.therapist-select-btn').addEventListener('click', function() {
                 const selectedTherapist = this.getAttribute('data-therapist');
                 showToast(`${therapists[selectedTherapist].name}を指名しました`);
-                therapistModal.style.display = 'none';
+                closeTherapistModalFunc();
             });
             
-            // スライドショーの開始
+            // Stop any existing slideshow before starting a new one
+            if (slideshowInterval) {
+                clearInterval(slideshowInterval);
+            }
+            
+            // Start slideshow
             startSlideshow();
+            
+            // Scroll to top of modal content
+            therapistModal.querySelector('.modal-body').scrollTop = 0;
         });
     });
     
-    closeTherapistModal.addEventListener('click', function() {
+    // Function to close therapist modal
+    function closeTherapistModalFunc() {
         therapistModal.style.display = 'none';
-    });
+        if (slideshowInterval) {
+            clearInterval(slideshowInterval);
+        }
+    }
+    
+    // Close therapist modal events
+    closeTherapistModal.addEventListener('click', closeTherapistModalFunc);
+    therapistBackBtn.addEventListener('click', closeTherapistModalFunc);
     
     // Terms, Privacy, Notice links
     const termsLink = document.getElementById('terms-link');
@@ -205,7 +242,7 @@ document.addEventListener('DOMContentLoaded', function() {
     // Close modals when clicking outside
     window.addEventListener('click', function(e) {
         if (e.target === therapistModal) {
-            therapistModal.style.display = 'none';
+            closeTherapistModalFunc();
         }
         if (e.target === termsModal) {
             termsModal.style.display = 'none';
@@ -254,6 +291,9 @@ document.addEventListener('DOMContentLoaded', function() {
     function startSlideshow() {
         slideIndex = 0;
         showSlides();
+        
+        // Store interval reference for later clearing
+        slideshowInterval = setInterval(showSlides, 3000);
     }
     
     function showSlides() {
@@ -269,7 +309,6 @@ document.addEventListener('DOMContentLoaded', function() {
         }
         
         slides[slideIndex - 1].classList.add('active');
-        setTimeout(showSlides, 3000); // 3秒ごとに画像を切り替え
     }
     
     // Scroll animation for elements
@@ -296,7 +335,7 @@ document.addEventListener('DOMContentLoaded', function() {
     // Handle escape key to close modals
     document.addEventListener('keydown', function(e) {
         if (e.key === 'Escape') {
-            therapistModal.style.display = 'none';
+            closeTherapistModalFunc();
             termsModal.style.display = 'none';
             privacyModal.style.display = 'none';
             noticeModal.style.display = 'none';
