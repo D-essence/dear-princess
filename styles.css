@@ -852,12 +852,14 @@ footer {
     }
     
     .hero {
-        height: 100vh; /* 画面いっぱいに表示 */
-        min-height: 100%; /* 最小高さを100%に */
-        background-size: cover; /* カバーに変更 */
-        margin-top: 0; /* ヘッダーとヒーローの間の余白を削除 */
+        height: 70vh; /* 高さを70%に調整 */
+        min-height: auto; /* 最小高さを自動に */
+        background-size: cover;
+        background-position: center center;
+        margin: 0;
         padding: 0;
-        overflow: hidden;
+        position: relative;
+        background-color: var(--background-color); /* 背景色を追加 */
     }
     
     .hero-content {
@@ -892,5 +894,10 @@ footer {
     /* ヘッダーの右寄せをさらに強化 */
     .hamburger {
         margin-left: 20px; /* 右余白を追加 */
+    }
+    
+    /* 次のセクションの余白を減らして隙間を埋める */
+    #about {
+        margin-top: 0;
     }
 }
