@@ -35,19 +35,29 @@ body {
     justify-content: center;
     align-items: center;
     text-align: center;
-    transition: opacity 0.5s ease; /* 追加: fade out効果のためのトランジション */
+    transition: opacity 0.5s ease;
+    padding: 20px; /* 内側の余白を追加 */
 }
 
 .overlay h2 {
     font-size: 2rem;
-    margin-bottom: 2rem;
+    margin-bottom: 1.5rem;
     color: var(--primary-color);
 }
 
 .overlay p {
-    font-size: 1.2rem;
-    margin-bottom: 2rem;
+    font-size: 1.1rem;
+    margin-bottom: 1.5rem;
     max-width: 600px;
+    line-height: 1.5;
+}
+
+/* 年齢確認ボタンを横並びにするためのラッパー */
+.age-buttons {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    gap: 1rem;
 }
 
 .btn {
@@ -169,13 +179,14 @@ nav ul li a:hover::after {
 
 .hero-content {
     position: absolute; /* 絶対位置指定 */
-    bottom: 15%; /* 下から15%の位置に配置 */
+    bottom: 0; /* 最下部に配置 */
     left: 0;
     right: 0;
     text-align: center;
     width: 90%;
     max-width: 800px;
     margin: 0 auto; /* 左右中央配置 */
+    padding-bottom: 30px; /* 下部に余白を追加 */
     animation: fadeInUp 1s ease;
 }
 
@@ -724,22 +735,40 @@ footer {
     
     /* セクションの余白調整（モバイル用） */
     section {
-        margin-top: 5rem;
-        margin-bottom: 5rem;
+        margin-top: 4rem;
+        margin-bottom: 4rem;
     }
     
     /* Hero adjustments for mobile */
     .hero {
         height: 70vh;
+        min-height: 400px; /* 最小高さを設定して内容が切れないようにする */
     }
     
     .hero-content {
-        bottom: 20%; /* モバイルでは下から20%の位置に配置 */
+        padding-bottom: 20px;
     }
     
     .hero p {
         font-size: 1.2rem;
     }
+    
+    /* 年齢確認調整 - モバイル用 */
+    .overlay {
+        overflow-y: auto; /* スクロール可能に */
+        padding: 30px 15px;
+    }
+    
+    .overlay h2 {
+        font-size: 1.8rem;
+        margin-bottom: 1rem;
+    }
+    
+    .overlay p {
+        font-size: 1rem;
+        margin-bottom: 1.2rem;
+    }
+}
     
     /* Section title adjustments */
     .section-title {
@@ -791,10 +820,11 @@ footer {
     
     .hero {
         height: 60vh;
+        min-height: 350px; /* 最小高さを確保 */
     }
     
     .hero-content {
-        bottom: 15%; /* スマホでは少し上に調整 */
+        padding-bottom: 15px;
     }
     
     .hero p {
@@ -811,6 +841,12 @@ footer {
         bottom: 80px;
         right: 20px;
         padding: 0.8rem;
+        font-size: 0.9rem;
+    }
+    
+    /* 年齢確認のボタン調整 - 小さい画面用 */
+    .btn {
+        padding: 0.6rem 1rem;
         font-size: 0.9rem;
     }
 }
