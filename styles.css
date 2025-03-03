@@ -170,14 +170,26 @@ nav ul li a:hover::after {
 
 /* Hero section - updated for better fit on all screens */
 .hero {
-    height: 80vh; /* 高さを少し増やして、より大きく表示 */
-    max-height: 700px; /* Maximum height to ensure it fits on all screens */
-    background: linear-gradient(rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0.7)), url('images/hero-bg.jpg') center/cover no-repeat;
-    position: relative; /* 位置指定の基準 */
-    padding: 0;
-    overflow: hidden; /* 内容がはみ出さないようにする */
+    position: relative;
     width: 100%;
-    margin-top: 0; /* 上部の余白を削除 */
+    height: 80vh;
+    max-height: 700px;
+    overflow: hidden;
+    margin: 0;
+    padding: 0;
+}
+
+.hero::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0.7)), url('images/hero-bg.jpg');
+    background-position: center;
+    background-size: cover;
+    background-repeat: no-repeat;
 }
 
 .hero-content {
@@ -852,27 +864,40 @@ footer {
     }
     
     .hero {
-        height: 70vh; /* 高さを70%に調整 */
-        min-height: auto; /* 最小高さを自動に */
-        background-size: cover;
-        background-position: center center;
+        height: 100vh; /* iPhoneでフルスクリーン表示 */
+        min-height: 0; /* 最小高さを削除 */
+        position: relative;
         margin: 0;
         padding: 0;
-        position: relative;
-        background-color: var(--background-color); /* 背景色を追加 */
+    }
+    
+    .hero::before {
+        background-size: cover;
+        background-position: center center;
+        height: 100%; /* 高さ100%に設定 */
+        width: 100%; /* 幅100%に設定 */
+        top: 0;
+        left: 0;
+        position: absolute;
+    }
+    
+    #about {
+        margin-top: 0; /* 次のセクションの余白を削除 */
     }
     
     .hero-content {
         padding-bottom: 10px;
         width: 100%;
-        bottom: 5%; /* 下部5%の位置に配置 */
+        bottom: 5%;
+        position: absolute;
+        z-index: 2; /* 確実に前面に */
     }
     
     .hero p {
         font-size: 1.1rem;
         margin-bottom: 0;
         padding: 0 1rem;
-        color: rgba(255, 255, 255, 0.5); /* スマホではさらに透明度を上げる */
+        color: rgba(255, 255, 255, 0.5);
     }
     
     .banner-btn {
@@ -893,11 +918,6 @@ footer {
     
     /* ヘッダーの右寄せをさらに強化 */
     .hamburger {
-        margin-left: 20px; /* 右余白を追加 */
-    }
-    
-    /* 次のセクションの余白を減らして隙間を埋める */
-    #about {
-        margin-top: 0;
+        margin-left: 20px;
     }
 }
