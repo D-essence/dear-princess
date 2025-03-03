@@ -168,7 +168,7 @@ nav ul li a:hover::after {
     width: 100%;
 }
 
-/* Hero section - updated for better fit on all screens */
+/* Hero section - PCとモバイルで異なる背景画像 */
 .hero {
     position: relative;
     width: 100%;
@@ -717,6 +717,14 @@ footer {
 
 /* Enhanced Mobile Responsiveness */
 @media (max-width: 768px) {
+    /* モバイル用のヒーロー背景画像 */
+    .hero::before {
+        background: linear-gradient(rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0.7)), url('images/hero-bg2.jpg');
+        background-position: center;
+        background-size: cover;
+        background-repeat: no-repeat;
+    }
+    
     .hamburger {
         display: block;
         margin-left: auto; /* ハンバーガーメニューを右寄せに */
