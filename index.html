@@ -1,0 +1,358 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dear Princess - 女性専用プレミアムセラピー</title>
+    <link rel="stylesheet" href="styles.css">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css" rel="stylesheet">
+</head>
+<body>
+    <!-- Loading Screen -->
+    <div class="loading" id="loading">
+        <div class="loading-spinner"></div>
+    </div>
+    
+    <!-- Age Verification Overlay -->
+    <div class="overlay" id="age-verification">
+        <h2>年齢確認</h2>
+        <p>Dear Princess は18歳以上の方のみご利用いただけます。あなたは18歳以上ですか？</p>
+        <button class="btn btn-primary" id="confirm-yes">はい、18歳以上です</button>
+        <button class="btn btn-secondary" id="confirm-no">いいえ、18歳未満です</button>
+    </div>
+    
+    <!-- Header -->
+    <header>
+        <div class="container">
+            <div class="header-content">
+                <a href="#" class="logo">Dear <span>Princess</span></a>
+                <div class="hamburger">
+                    <span class="bar"></span>
+                    <span class="bar"></span>
+                    <span class="bar"></span>
+                </div>
+                <nav>
+                    <ul>
+                        <li><a href="#about">ディアプリとは</a></li>
+                        <li><a href="#therapists">セラピスト</a></li>
+                        <li><a href="#plans">料金プラン</a></li>
+                        <li><a href="#contact">ご予約・お問い合わせ</a></li>
+                    </ul>
+                </nav>
+            </div>
+        </div>
+    </header>
+    
+    <!-- Hero Section -->
+    <section class="hero">
+        <h1>Dear Princess</h1>
+        <p>アイドル級・国宝級のイケメンセラピストによる、女性のための極上のひととき</p>
+        <a href="#therapists" class="btn btn-primary">セラピスト一覧</a>
+    </section>
+    
+    <!-- About Section -->
+    <section id="about" class="container">
+        <h2 class="section-title">ディアプリとは</h2>
+        <p class="section-subtitle">Dear Princessの特別な世界へようこそ</p>
+        <div style="text-align: center; max-width: 800px; margin: 0 auto;">
+            <p style="margin-bottom: 2rem;">Dear Princess（ディアプリ）は、女性のお客様だけのための特別なリラクゼーションサロンです。</p>
+            <p style="margin-bottom: 2rem;">当店の強みは、<span style="color: var(--primary-color); font-weight: bold;">圧倒的な顔面偏差値を持つ若いイケメンセラピスト</span>たち。アイドル級・国宝級の容姿を持つ厳選されたセラピストによる、最高のおもてなしをご堪能いただけます。</p>
+            <p style="margin-bottom: 2rem;">普段の疲れを忘れ、優しさと癒しに包まれる贅沢なひとときをお過ごしください。</p>
+        </div>
+    </section>
+    
+    <!-- Therapists Section -->
+    <section id="therapists" class="container">
+        <h2 class="section-title">セラピスト紹介</h2>
+        <p class="section-subtitle">アイドル級・国宝級の容姿を持つ厳選されたセラピスト</p>
+        <div class="therapists">
+            <!-- Therapist 1 -->
+            <div class="therapist-card" data-therapist="haruki">
+                <div class="therapist-image" style="background-image: url('/api/placeholder/400/300');"></div>
+                <div class="therapist-info">
+                    <h3 class="therapist-name">晴輝 (Haruki)</h3>
+                    <p class="therapist-details">年齢: 24歳 / 身長: 183cm</p>
+                    <p class="therapist-details">趣味: ピアノ、読書</p>
+                    <p>穏やかな笑顔と知的な雰囲気が魅力のセラピスト。優しい手つきと会話で心身ともに癒します。</p>
+                </div>
+            </div>
+            
+            <!-- Therapist 2 -->
+            <div class="therapist-card" data-therapist="ren">
+                <div class="therapist-image" style="background-image: url('/api/placeholder/400/300');"></div>
+                <div class="therapist-info">
+                    <h3 class="therapist-name">蓮 (Ren)</h3>
+                    <p class="therapist-details">年齢: 22歳 / 身長: 178cm</p>
+                    <p class="therapist-details">趣味: ダンス、料理</p>
+                    <p>明るく爽やかな笑顔が印象的。エネルギッシュで会話も弾み、時間を忘れる癒しのひとときを提供します。</p>
+                </div>
+            </div>
+            
+            <!-- Therapist 3 -->
+            <div class="therapist-card" data-therapist="yuma">
+                <div class="therapist-image" style="background-image: url('/api/placeholder/400/300');"></div>
+                <div class="therapist-info">
+                    <h3 class="therapist-name">悠真 (Yuma)</h3>
+                    <p class="therapist-details">年齢: 25歳 / 身長: 180cm</p>
+                    <p class="therapist-details">趣味: ギター、映画鑑賞</p>
+                    <p>クールな表情とは裏腹に優しさ溢れる人気セラピスト。心を読むような的確な施術が魅力です。</p>
+                </div>
+            </div>
+            
+            <!-- Therapist 4 -->
+            <div class="therapist-card" data-therapist="sho">
+                <div class="therapist-image" style="background-image: url('/api/placeholder/400/300');"></div>
+                <div class="therapist-info">
+                    <h3 class="therapist-name">翔 (Sho)</h3>
+                    <p class="therapist-details">年齢: 23歳 / 身長: 182cm</p>
+                    <p class="therapist-details">趣味: スポーツ、旅行</p>
+                    <p>爽やかなスポーツマンタイプ。元気をくれる明るい性格と、力強くも繊細な施術が自慢です。</p>
+                </div>
+            </div>
+        </div>
+    </section>
+    
+    <!-- Plans Section -->
+    <section id="plans" class="container">
+        <h2 class="section-title">料金プラン</h2>
+        <p class="section-subtitle">あなたにぴったりの癒しのひとときを</p>
+        <div class="plans">
+            <!-- Standard Plan -->
+            <div class="plan-card">
+                <h3 class="plan-title">スタンダードコース</h3>
+                <p class="plan-price">¥18,000 <span style="font-size: 1rem; color: #aaa;">/ 60分</span></p>
+                <ul class="plan-features">
+                    <li>全身のリラクゼーション</li>
+                    <li>アロマオイル使用</li>
+                    <li>フェイシャルケア</li>
+                    <li>ドリンクサービス付き</li>
+                </ul>
+                <a href="#contact" class="btn btn-primary plan-btn" data-plan="standard">ご予約はこちら</a>
+            </div>
+            
+            <!-- Premium Plan -->
+            <div class="plan-card" style="border: 2px solid var(--primary-color);">
+                <h3 class="plan-title">プレミアムコース</h3>
+                <p class="plan-price">¥28,000 <span style="font-size: 1rem; color: #aaa;">/ 90分</span></p>
+                <ul class="plan-features">
+                    <li>全身の高級オイルトリートメント</li>
+                    <li>特製アロマ使用</li>
+                    <li>ヘッドスパ付き</li>
+                    <li>フェイシャル＆デコルテケア</li>
+                    <li>シャンパン＆軽食付き</li>
+                </ul>
+                <a href="#contact" class="btn btn-primary plan-btn" data-plan="premium">ご予約はこちら</a>
+            </div>
+            
+            <!-- VIP Plan -->
+            <div class="plan-card">
+                <h3 class="plan-title">VIPコース</h3>
+                <p class="plan-price">¥45,000 <span style="font-size: 1rem; color: #aaa;">/ 120分</span></p>
+                <ul class="plan-features">
+                    <li>最高級オイルによる贅沢なトリートメント</li>
+                    <li>完全オーダーメイドケア</li>
+                    <li>ヘッドスパ＆フットスパ付き</li>
+                    <li>特製フェイシャル＆ボディケア</li>
+                    <li>高級シャンパン＆特製スイーツ付き</li>
+                    <li>アフターケア付き</li>
+                </ul>
+                <a href="#contact" class="btn btn-primary plan-btn" data-plan="vip">ご予約はこちら</a>
+            </div>
+        </div>
+    </section>
+    
+    <!-- Contact Section -->
+    <section id="contact" class="container contact">
+        <h2 class="section-title">ご予約・お問い合わせ</h2>
+        <p class="section-subtitle">あなたの特別な時間をお約束します</p>
+        <div class="contact-methods">
+            <!-- LINE -->
+            <div class="contact-method">
+                <div class="contact-icon">
+                    <i class="fab fa-line"></i>
+                </div>
+                <h3 style="margin-bottom: 1rem; color: var(--primary-color);">LINE</h3>
+                <p style="margin-bottom: 1.5rem;">LINEでのご予約・お問い合わせが便利です。24時間受付中。</p>
+                <a href="#" class="btn btn-primary line-btn" style="background-color: #06C755; color: white;">友だち追加</a>
+            </div>
+            
+            <!-- Phone -->
+            <div class="contact-method">
+                <div class="contact-icon">
+                    <i class="fas fa-phone-alt"></i>
+                </div>
+                <h3 style="margin-bottom: 1rem; color: var(--primary-color);">お電話</h3>
+                <p style="margin-bottom: 1.5rem;">お電話でのご予約・お問い合わせは下記の番号まで。</p>
+                <p style="font-size: 1.3rem; font-weight: 700; color: var(--primary-color);">080-XXXX-XXXX</p>
+                <p style="font-size: 0.9rem; color: #aaa;">受付時間: 12:00〜24:00</p>
+            </div>
+        </div>
+    </section>
+    
+    <!-- Footer -->
+    <footer>
+        <div class="container">
+            <div class="footer-links">
+                <a href="#about">ディアプリとは</a>
+                <a href="#therapists">セラピスト</a>
+                <a href="#plans">料金プラン</a>
+                <a href="#contact">ご予約・お問い合わせ</a>
+                <a href="#" id="terms-link">利用規約</a>
+                <a href="#" id="privacy-link">プライバシーポリシー</a>
+                <a href="#" id="notice-link">注意事項</a>
+            </div>
+            <p class="copyright">© 2025 Dear Princess All Rights Reserved.</p>
+        </div>
+    </footer>
+    
+    <!-- Scroll to top button -->
+    <div class="scroll-top" id="scroll-top">
+        <i class="fas fa-chevron-up"></i>
+    </div>
+    
+    <!-- Toast Notification -->
+    <div class="toast" id="toast">お知らせが表示されます</div>
+    
+    <!-- Modals -->
+    <!-- Therapist Modal -->
+    <div class="modal" id="therapist-modal">
+        <div class="modal-content">
+            <span class="close-modal" id="close-therapist-modal">&times;</span>
+            <h2 class="modal-title" id="therapist-modal-title">セラピスト詳細</h2>
+            <div class="slideshow" id="therapist-slideshow">
+                <div class="slide active" style="background-image: url('/api/placeholder/600/400');"></div>
+                <div class="slide" style="background-image: url('/api/placeholder/600/400');"></div>
+                <div class="slide" style="background-image: url('/api/placeholder/600/400');"></div>
+            </div>
+            <div id="therapist-modal-content"></div>
+        </div>
+    </div>
+    
+    <!-- Terms Modal -->
+    <div class="modal" id="terms-modal">
+        <div class="modal-content">
+            <span class="close-modal" id="close-terms-modal">&times;</span>
+            <h2 class="modal-title">利用規約</h2>
+            <div style="max-height: 400px; overflow-y: auto; padding: 0 10px;">
+                <p style="margin-bottom: 1rem;">以下の利用規約（以下「本規約」）は、Dear Princess（以下「当店」）のサービスをご利用いただくにあたり、お客様に同意していただく必要がある事項を記載しています。サービスをご利用される前に必ずお読みください。</p>
+                
+                <h3 style="color: var(--primary-color); margin: 1.5rem 0 0.5rem;">1. サービス内容</h3>
+                <p>当店は女性専用のリラクゼーションサービスを提供しております。</p>
+                
+                <h3 style="color: var(--primary-color); margin: 1.5rem 0 0.5rem;">2. 利用資格</h3>
+                <p>当店のサービスをご利用いただけるのは18歳以上の女性に限ります。</p>
+                
+                <h3 style="color: var(--primary-color); margin: 1.5rem 0 0.5rem;">3. 予約・キャンセル</h3>
+                <p>ご予約は電話またはLINEにて承っております。キャンセルは24時間前までにご連絡ください。それ以降のキャンセルには所定のキャンセル料が発生します。</p>
+                
+                <h3 style="color: var(--primary-color); margin: 1.5rem 0 0.5rem;">4. 禁止事項</h3>
+                <p>以下の行為は固く禁止しております：</p>
+                <ul style="list-style-type: disc; margin-left: 1.5rem; margin-bottom: 1rem;">
+                    <li>セラピストへの迷惑行為</li>
+                    <li>当店が提供するサービス以外の要求</li>
+                    <li>撮影・録音行為</li>
+                    <li>他のお客様への迷惑行為</li>
+                </ul>
+                
+                <h3 style="color: var(--primary-color); margin: 1.5rem 0 0.5rem;">5. 免責事項</h3>
+                <p>当店は以下の事項について責任を負いません：</p>
+                <ul style="list-style-type: disc; margin-left: 1.5rem; margin-bottom: 1rem;">
+                    <li>お客様の過失による事故・怪我</li>
+                    <li>お客様の体質・体調による不適合</li>
+                    <li>天災・交通事情等によるサービス提供の遅延・中止</li>
+                </ul>
+                
+                <h3 style="color: var(--primary-color); margin: 1.5rem 0 0.5rem;">6. 規約の変更</h3>
+                <p>当店は本規約を予告なく変更することがあります。変更後の規約は当店ウェブサイトに掲載した時点から効力を生じるものとします。</p>
+            </div>
+        </div>
+    </div>
+    
+    <!-- Privacy Policy Modal -->
+    <div class="modal" id="privacy-modal">
+        <div class="modal-content">
+            <span class="close-modal" id="close-privacy-modal">&times;</span>
+            <h2 class="modal-title">プライバシーポリシー</h2>
+            <div style="max-height: 400px; overflow-y: auto; padding: 0 10px;">
+                <p style="margin-bottom: 1rem;">Dear Princess（以下「当店」）は、お客様のプライバシーを尊重し、個人情報の保護に努めます。このプライバシーポリシーでは、当店が収集・利用する個人情報の取り扱いについて説明します。</p>
+                
+                <h3 style="color: var(--primary-color); margin: 1.5rem 0 0.5rem;">1. 収集する個人情報</h3>
+                <p>当店は、サービス提供のために以下の個人情報を収集することがあります：</p>
+                <ul style="list-style-type: disc; margin-left: 1.5rem; margin-bottom: 1rem;">
+                    <li>氏名</li>
+                    <li>連絡先（電話番号、メールアドレス等）</li>
+                    <li>年齢確認情報</li>
+                </ul>
+                
+                <h3 style="color: var(--primary-color); margin: 1.5rem 0 0.5rem;">2. 個人情報の利用目的</h3>
+                <p>収集した個人情報は以下の目的で利用します：</p>
+                <ul style="list-style-type: disc; margin-left: 1.5rem; margin-bottom: 1rem;">
+                    <li>サービスの提供および予約管理</li>
+                    <li>お客様からのお問い合わせへの対応</li>
+                    <li>サービス改善のための分析（個人を特定しない形式）</li>
+                </ul>
+                
+                <h3 style="color: var(--primary-color); margin: 1.5rem 0 0.5rem;">3. 個人情報の第三者提供</h3>
+                <p>当店は、法令に基づく場合を除き、お客様の同意なく個人情報を第三者に提供することはありません。</p>
+                
+                <h3 style="color: var(--primary-color); margin: 1.5rem 0 0.5rem;">4. 個人情報の保護</h3>
+                <p>当店は、個人情報の漏洩、紛失、改ざん等を防止するため、適切なセキュリティ対策を講じています。</p>
+                
+                <h3 style="color: var(--primary-color); margin: 1.5rem 0 0.5rem;">5. 個人情報の開示・訂正・削除</h3>
+                <p>お客様ご自身の個人情報の開示・訂正・削除をご希望の場合は、当店までご連絡ください。</p>
+                
+                <h3 style="color: var(--primary-color); margin: 1.5rem 0 0.5rem;">6. ポリシーの変更</h3>
+                <p>当店は、必要に応じて本ポリシーを変更することがあります。変更後のポリシーは当店ウェブサイトに掲載した時点から効力を生じるものとします。</p>
+            </div>
+        </div>
+    </div>
+    
+    <!-- Notice Modal -->
+    <div class="modal" id="notice-modal">
+        <div class="modal-content">
+            <span class="close-modal" id="close-notice-modal">&times;</span>
+            <h2 class="modal-title">注意事項</h2>
+            <div style="max-height: 400px; overflow-y: auto; padding: 0 10px;">
+                <p style="margin-bottom: 1rem;">Dear Princessをご利用いただく際の注意事項です。安心・安全なサービス提供のため、以下の事項をご確認ください。</p>
+                
+                <h3 style="color: var(--primary-color); margin: 1.5rem 0 0.5rem;">1. ご予約について</h3>
+                <ul style="list-style-type: disc; margin-left: 1.5rem; margin-bottom: 1rem;">
+                    <li>初回のご予約は電話にて承ります</li>
+                    <li>当日予約は空き状況により承れない場合があります</li>
+                    <li>遅刻された場合、終了時間の変更はございません</li>
+                </ul>
+                
+                <h3 style="color: var(--primary-color); margin: 1.5rem 0 0.5rem;">2. 施術前のご注意</h3>
+                <ul style="list-style-type: disc; margin-left: 1.5rem; margin-bottom: 1rem;">
+                    <li>体調不良の場合はご利用をお控えください</li>
+                    <li>アルコール摂取後のご利用はご遠慮ください</li>
+                    <li>妊娠中の方は事前にご相談ください</li>
+                </ul>
+                
+                <h3 style="color: var(--primary-color); margin: 1.5rem 0 0.5rem;">3. サービス提供について</h3>
+                <ul style="list-style-type: disc; margin-left: 1.5rem; margin-bottom: 1rem;">
+                    <li>セラピストの指名は可能ですが、状況により承れない場合があります</li>
+                    <li>セラピストの交代は原則として承っておりません</li>
+                    <li>施術内容はコース説明の範囲内となります</li>
+                </ul>
+                
+                <h3 style="color: var(--primary-color); margin: 1.5rem 0 0.5rem;">4. お支払いについて</h3>
+                <ul style="list-style-type: disc; margin-left: 1.5rem; margin-bottom: 1rem;">
+                    <li>料金は施術前にお支払いいただきます</li>
+                    <li>お支払いは現金のみとなります</li>
+                    <li>領収書が必要な場合は事前にお申し付けください</li>
+                </ul>
+                
+                <h3 style="color: var(--primary-color); margin: 1.5rem 0 0.5rem;">5. その他</h3>
+                <ul style="list-style-type: disc; margin-left: 1.5rem; margin-bottom: 1rem;">
+                    <li>当店は女性専用サロンです</li>
+                    <li>サービス提供中の撮影・録音はご遠慮ください</li>
+                    <li>貴重品の管理はお客様自身でお願いいたします</li>
+                </ul>
+            </div>
+        </div>
+    </div>
+    
+    <script src="script.js"></script>
+</body>
+</html>
