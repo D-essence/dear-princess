@@ -22,7 +22,6 @@ document.addEventListener('DOMContentLoaded', function() {
         }, 500);
         
         // 削除：ウェルカムトーストを表示しないようにする
-        // showToast('Dear Princessへようこそ！');
     });
     
     confirmNo.addEventListener('click', function() {
@@ -64,15 +63,10 @@ document.addEventListener('DOMContentLoaded', function() {
         });
     });
     
-    // Toast notification function
+    // Toast notification function - 完全に無効化
     function showToast(message) {
-        const toast = document.getElementById('toast');
-        toast.textContent = message;
-        toast.classList.add('show');
-        
-        setTimeout(function() {
-            toast.classList.remove('show');
-        }, 3000);
+        // トースト表示を無効化
+        return;
     }
     
     // Fixed Contact Banner 
@@ -161,17 +155,19 @@ document.addEventListener('DOMContentLoaded', function() {
                     <p style="font-style: italic;">"${therapist.message}"</p>
                 </div>
                 <div style="text-align: center; margin-top: 2rem;">
-                    <button class="btn btn-primary therapist-select-btn" data-therapist="${therapistId}">このセラピストを指名する</button>
+                    <button class="btn btn-primary check-schedule-btn" data-therapist="${therapistId}">出勤情報を確認する</button>
                 </div>
             `;
             
             therapistModal.style.display = 'flex';
             
-            // セラピスト指名ボタンのイベントリスナーを追加
-            document.querySelector('.therapist-select-btn').addEventListener('click', function() {
-                const selectedTherapist = this.getAttribute('data-therapist');
-                showToast(`${therapists[selectedTherapist].name}を指名しました`);
+            // セラピスト出勤確認ボタンのイベントリスナーを追加
+            document.querySelector('.check-schedule-btn').addEventListener('click', function() {
                 closeTherapistModalFunc();
+                // Xセクションへスクロール
+                document.getElementById('contact').scrollIntoView({
+                    behavior: 'smooth'
+                });
             });
             
             // Stop any existing slideshow before starting a new one
@@ -361,11 +357,6 @@ document.addEventListener('DOMContentLoaded', function() {
 
 // グローバルスコープでtoast表示関数を定義（外部からも呼び出せるようにする）
 function showToast(message) {
-    const toast = document.getElementById('toast');
-    toast.textContent = message;
-    toast.classList.add('show');
-    
-    setTimeout(function() {
-        toast.classList.remove('show');
-    }, 3000);
+    // トースト表示を無効化
+    return;
 }
