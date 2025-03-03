@@ -116,24 +116,25 @@ header {
 }
 
 .logo {
-    font-size: 1.8rem;
-    font-weight: 700;
-    color: var(--primary-color);
+    font-size: 1.3rem;
+    font-weight: 500;
+    color: #cccccc; /* 明るい灰色に変更 */
     text-decoration: none;
     transition: all 0.3s ease;
 }
 
 .logo:hover {
-    text-shadow: 0 0 10px rgba(212, 175, 55, 0.5);
+    text-shadow: 0 0 10px rgba(204, 204, 204, 0.5);
 }
 
 .logo span {
-    color: var(--accent-color);
+    color: #dddddd; /* 少し明るい灰色に変更 */
 }
 
 nav ul {
     display: flex;
     list-style: none;
+    justify-content: flex-end; /* 右寄せに変更 */
 }
 
 nav ul li {
@@ -176,6 +177,7 @@ nav ul li a:hover::after {
     padding: 0;
     overflow: hidden; /* 内容がはみ出さないようにする */
     width: 100%;
+    margin-top: 0; /* 上部の余白を削除 */
 }
 
 .hero-content {
@@ -189,6 +191,13 @@ nav ul li a:hover::after {
     margin: 0 auto; /* 左右中央配置 */
     padding-bottom: 30px; /* 下部に余白を追加 */
     animation: fadeInUp 1s ease;
+}
+
+.hero p {
+    font-size: 1.5rem;
+    margin-bottom: 2rem;
+    line-height: 1.6;
+    color: rgba(255, 255, 255, 0.8); /* テキストをやや暗めに */
 }
 
 .hero p {
@@ -747,6 +756,11 @@ footer {
         min-height: 400px; /* 最小高さを設定して内容が切れないようにする */
         background-position: center;
         background-size: 100% auto; /* 横幅に合わせて背景画像を表示 */
+        margin-top: 0; /* 上部マージンを削除 */
+    }
+    
+    header + .hero {
+        margin-top: 0; /* ヘッダーの下のヒーローセクションのマージンを削除 */
     }
     
     .hero-content {
@@ -757,6 +771,7 @@ footer {
     .hero p {
         font-size: 1.2rem;
         padding: 0 1rem;
+        color: rgba(255, 255, 255, 0.8); /* テキストをやや暗めに */
     }
     
     /* 年齢確認調整 - モバイル用 */
@@ -828,6 +843,15 @@ footer {
         height: 50vh;
         min-height: 350px; /* 最小高さを確保 */
         background-size: cover; /* カバーに変更 */
+        margin-top: 0; /* 上部マージンを削除 */
+    }
+    
+    body {
+        padding-top: 0; /* 上部の余白を削除 */
+    }
+    
+    header {
+        margin-top: 0;
     }
     
     .hero-content {
@@ -839,6 +863,7 @@ footer {
         font-size: 1.1rem;
         margin-bottom: 1.5rem;
         padding: 0 1rem;
+        color: rgba(255, 255, 255, 0.7); /* スマホではさらに暗めのテキスト */
     }
     
     .banner-btn {
