@@ -35,6 +35,7 @@ body {
     justify-content: center;
     align-items: center;
     text-align: center;
+    transition: opacity 0.5s ease; /* 追加: fade out効果のためのトランジション */
 }
 
 .overlay h2 {
@@ -163,7 +164,7 @@ nav ul li a:hover::after {
     background: linear-gradient(rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0.7)), url('images/hero-bg.jpg') center/cover no-repeat;
     display: flex;
     flex-direction: column;
-    justify-content: flex-end; /* Position content at bottom */
+    justify-content: center; /* 変更: flex-end から center へ */
     align-items: center;
     text-align: center;
     color: var(--text-color);
@@ -172,7 +173,7 @@ nav ul li a:hover::after {
 }
 
 .hero-content {
-    margin-bottom: 10%; /* Adjusted spacing */
+    margin-top: 5%; /* 追加: コンテンツを少し下へ移動 */
     width: 90%;
     max-width: 800px;
     animation: fadeInUp 1s ease;
@@ -196,6 +197,41 @@ nav ul li a:hover::after {
     font-size: 1.3rem;
     margin: -2rem 0 3rem;
     color: #aaa;
+}
+
+/* 利用方法セクション用のスタイル追加 */
+.usage-details {
+    max-width: 800px;
+    margin: 0 auto;
+    background-color: var(--secondary-bg);
+    border-radius: 10px;
+    padding: 2rem;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
+}
+
+.usage-details h3 {
+    color: var(--primary-color);
+    margin-bottom: 1rem;
+    font-size: 1.3rem;
+}
+
+.usage-details ul {
+    list-style-type: none;
+    margin-bottom: 1.5rem;
+}
+
+.usage-details ul li {
+    margin-bottom: 0.8rem;
+    position: relative;
+    padding-left: 1.5rem;
+}
+
+.usage-details ul li:before {
+    content: "•";
+    color: var(--primary-color);
+    position: absolute;
+    left: 0;
+    font-size: 1.2rem;
 }
 
 .therapists {
@@ -428,6 +464,16 @@ footer {
 
 .banner-btn.line-btn:hover {
     background-color: #049b41;
+}
+
+/* Xボタン用のスタイル追加 */
+.banner-btn.x-btn {
+    background-color: #1DA1F2;
+    color: white;
+}
+
+.banner-btn.x-btn:hover {
+    background-color: #0d8bd9;
 }
 
 .banner-btn i {
