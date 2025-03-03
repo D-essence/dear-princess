@@ -21,8 +21,8 @@ document.addEventListener('DOMContentLoaded', function() {
             ageVerification.style.display = 'none';
         }, 500);
         
-        // Show welcome toast
-        showToast('Dear Princessへようこそ！');
+        // 削除：ウェルカムトーストを表示しないようにする
+        // showToast('Dear Princessへようこそ！');
     });
     
     confirmNo.addEventListener('click', function() {
@@ -263,6 +263,14 @@ document.addEventListener('DOMContentLoaded', function() {
         // window.location.href = "https://line.me/yourlink";
     });
     
+    // X button
+    document.querySelector('.x-btn').addEventListener('click', function(e) {
+        e.preventDefault();
+        showToast('X（旧Twitter）のフォローページへ移動します');
+        // 実際のXリンクを設定する場合はここにURLを指定
+        // window.location.href = "https://twitter.com/yourlink";
+    });
+    
     // Plan buttons
     document.querySelectorAll('.plan-btn').forEach(btn => {
         btn.addEventListener('click', function(e) {
@@ -342,12 +350,13 @@ document.addEventListener('DOMContentLoaded', function() {
         }
     });
     
-    // ウィンドウのロード完了時にトースト表示
-    window.addEventListener('load', function() {
-        setTimeout(function() {
-            showToast('サイトが正常に読み込まれました');
-        }, 2000);
-    });
+    // ウィンドウのロード完了時にトースト表示を削除
+    // 以下の部分を削除
+    // window.addEventListener('load', function() {
+    //     setTimeout(function() {
+    //         showToast('サイトが正常に読み込まれました');
+    //     }, 2000);
+    // });
 });
 
 // グローバルスコープでtoast表示関数を定義（外部からも呼び出せるようにする）
