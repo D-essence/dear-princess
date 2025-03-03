@@ -707,6 +707,7 @@ footer {
 @media (max-width: 768px) {
     .hamburger {
         display: block;
+        margin-left: auto; /* ハンバーガーメニューを右寄せに */
     }
     
     .hamburger.active .bar:nth-child(2) {
@@ -719,6 +720,14 @@ footer {
     
     .hamburger.active .bar:nth-child(3) {
         transform: translateY(-8px) rotate(-45deg);
+    }
+    
+    .header-content {
+        justify-content: flex-end; /* ヘッダーコンテンツを右寄せに */
+    }
+    
+    .logo {
+        margin-right: auto; /* ロゴを左に、残りを右に */
     }
     
     nav ul {
@@ -757,6 +766,7 @@ footer {
         background-position: center;
         background-size: 100% auto; /* 横幅に合わせて背景画像を表示 */
         margin-top: 0; /* ヘッダーとヒーローの間の余白を削除 */
+        margin-bottom: 0; /* 下部の余白も削除 */
     }
     
     header + .hero {
@@ -764,15 +774,16 @@ footer {
     }
     
     .hero-content {
-        padding-bottom: 20px;
+        padding-bottom: 10px;
         width: 100%;
-        bottom: 30%; /* モバイルでさらに上に移動 */
+        bottom: 5%; /* 下部5%の位置に配置 */
     }
     
     .hero p {
         font-size: 1.2rem;
         padding: 0 1rem;
-        color: rgba(255, 255, 255, 0.8); /* テキストをやや暗めに */
+        color: rgba(255, 255, 255, 0.6); /* テキストを灰色っぽく透明に */
+        margin-bottom: 0; /* 下部マージンを削除 */
     }
     
     /* 年齢確認調整 - モバイル用 */
@@ -841,23 +852,25 @@ footer {
     }
     
     .hero {
-        height: 50vh;
-        min-height: 350px; /* 最小高さを確保 */
+        height: 100vh; /* 画面いっぱいに表示 */
+        min-height: 100%; /* 最小高さを100%に */
         background-size: cover; /* カバーに変更 */
         margin-top: 0; /* ヘッダーとヒーローの間の余白を削除 */
+        padding: 0;
+        overflow: hidden;
     }
     
     .hero-content {
-        padding-bottom: 15px;
+        padding-bottom: 10px;
         width: 100%;
-        bottom: 40%; /* スマホではさらに上に移動 */
+        bottom: 5%; /* 下部5%の位置に配置 */
     }
     
     .hero p {
         font-size: 1.1rem;
-        margin-bottom: 1.5rem;
+        margin-bottom: 0;
         padding: 0 1rem;
-        color: rgba(255, 255, 255, 0.7); /* スマホではさらに暗めのテキスト */
+        color: rgba(255, 255, 255, 0.5); /* スマホではさらに透明度を上げる */
     }
     
     .banner-btn {
@@ -874,5 +887,10 @@ footer {
     .btn {
         padding: 0.6rem 1rem;
         font-size: 0.9rem;
+    }
+    
+    /* ヘッダーの右寄せをさらに強化 */
+    .hamburger {
+        margin-left: 20px; /* 右余白を追加 */
     }
 }
