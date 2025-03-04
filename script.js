@@ -95,7 +95,7 @@ document.addEventListener('DOMContentLoaded', function() {
     const therapistBackBtn = document.getElementById('therapist-back-btn');
     const therapistModalTitle = document.getElementById('therapist-modal-title');
     const therapistModalContent = document.getElementById('therapist-modal-content');
-    let slideshowInterval; // Store slideshow interval for clearing
+    const therapistModalImage = document.getElementById('therapist-modal-image');
     
     // Therapist data
     const therapists = {
@@ -139,6 +139,10 @@ document.addEventListener('DOMContentLoaded', function() {
             const therapist = therapists[therapistId];
             
             therapistModalTitle.textContent = therapist.name;
+            
+            // モーダル画像のパスを設定
+            therapistModalImage.style.backgroundImage = `url('images/${therapistId}m.jpg')`;
+            
             therapistModalContent.innerHTML = `
                 <div style="margin-bottom: 1.5rem;">
                     <h3 style="color: var(--primary-color); margin-bottom: 0.5rem;">プロフィール</h3>
@@ -170,14 +174,6 @@ document.addEventListener('DOMContentLoaded', function() {
                 });
             });
             
-            // Stop any existing slideshow before starting a new one
-            if (slideshowInterval) {
-                clearInterval(slideshowInterval);
-            }
-            
-            // Start slideshow
-            startSlideshow();
-            
             // Scroll to top of modal content
             therapistModal.querySelector('.modal-body').scrollTop = 0;
         });
@@ -186,9 +182,6 @@ document.addEventListener('DOMContentLoaded', function() {
     // Function to close therapist modal
     function closeTherapistModalFunc() {
         therapistModal.style.display = 'none';
-        if (slideshowInterval) {
-            clearInterval(slideshowInterval);
-        }
     }
     
     // Close therapist modal events
@@ -290,31 +283,6 @@ document.addEventListener('DOMContentLoaded', function() {
         });
     }
     
-    // Slideshow functionality
-    let slideIndex = 0;
-    function startSlideshow() {
-        slideIndex = 0;
-        showSlides();
-        
-        // Store interval reference for later clearing
-        slideshowInterval = setInterval(showSlides, 3000);
-    }
-    
-    function showSlides() {
-        let slides = document.querySelectorAll('.slide');
-        
-        for (let i = 0; i < slides.length; i++) {
-            slides[i].classList.remove('active');
-        }
-        
-        slideIndex++;
-        if (slideIndex > slides.length) {
-            slideIndex = 1;
-        }
-        
-        slides[slideIndex - 1].classList.add('active');
-    }
-    
     // Scroll animation for elements
     function checkScroll() {
         const elements = [
@@ -345,14 +313,6 @@ document.addEventListener('DOMContentLoaded', function() {
             noticeModal.style.display = 'none';
         }
     });
-    
-    // ウィンドウのロード完了時にトースト表示を削除
-    // 以下の部分を削除
-    // window.addEventListener('load', function() {
-    //     setTimeout(function() {
-    //         showToast('サイトが正常に読み込まれました');
-    //     }, 2000);
-    // });
 });
 
 // グローバルスコープでtoast表示関数を定義（外部からも呼び出せるようにする）
