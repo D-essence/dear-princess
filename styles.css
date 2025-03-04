@@ -69,6 +69,7 @@ body {
     font-size: 1rem;
     cursor: pointer;
     transition: all 0.3s ease;
+    white-space: nowrap;
 }
 
 .btn-primary {
@@ -781,7 +782,7 @@ footer {
     .hero-content {
         padding-bottom: 10px;
         width: 100%;
-        bottom: 30%; /* 下部30%の位置に配置（上に移動） */
+        bottom: 15%; /* 下部15%の位置に配置（調整済み） */
     }
     
     .hero p {
@@ -881,7 +882,7 @@ footer {
     .hero-content {
         padding-bottom: 10px;
         width: 100%;
-        bottom: 30%; /* 30%に変更（上に移動） */
+        bottom: 15%; /* 15%に変更（位置調整） */
         position: absolute;
         z-index: 2; /* 確実に前面に */
     }
