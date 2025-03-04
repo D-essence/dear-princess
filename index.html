@@ -102,7 +102,7 @@
         <div class="therapists">
             <!-- Therapist 1 -->
             <div class="therapist-card" data-therapist="haruki">
-                <div class="therapist-image" style="background-image: url('/api/placeholder/400/300');"></div>
+                <div class="therapist-image" style="background-image: url('images/man1.jpg');"></div>
                 <div class="therapist-info">
                     <h3 class="therapist-name">晴輝 (Haruki)</h3>
                     <p class="therapist-details">年齢: 24歳 / 身長: 183cm</p>
@@ -113,7 +113,7 @@
             
             <!-- Therapist 2 -->
             <div class="therapist-card" data-therapist="ren">
-                <div class="therapist-image" style="background-image: url('/api/placeholder/400/300');"></div>
+                <div class="therapist-image" style="background-image: url('images/man2.jpg');"></div>
                 <div class="therapist-info">
                     <h3 class="therapist-name">蓮 (Ren)</h3>
                     <p class="therapist-details">年齢: 22歳 / 身長: 178cm</p>
@@ -124,7 +124,7 @@
             
             <!-- Therapist 3 -->
             <div class="therapist-card" data-therapist="yuma">
-                <div class="therapist-image" style="background-image: url('/api/placeholder/400/300');"></div>
+                <div class="therapist-image" style="background-image: url('images/man3.jpg');"></div>
                 <div class="therapist-info">
                     <h3 class="therapist-name">悠真 (Yuma)</h3>
                     <p class="therapist-details">年齢: 25歳 / 身長: 180cm</p>
@@ -135,7 +135,7 @@
             
             <!-- Therapist 4 -->
             <div class="therapist-card" data-therapist="sho">
-                <div class="therapist-image" style="background-image: url('/api/placeholder/400/300');"></div>
+                <div class="therapist-image" style="background-image: url('images/man4.jpg');"></div>
                 <div class="therapist-info">
                     <h3 class="therapist-name">翔 (Sho)</h3>
                     <p class="therapist-details">年齢: 23歳 / 身長: 182cm</p>
@@ -265,11 +265,8 @@
                 <span class="close-modal" id="close-therapist-modal">&times;</span>
             </div>
             <div class="modal-body">
-                <div class="slideshow" id="therapist-slideshow">
-                    <div class="slide active" style="background-image: url('/api/placeholder/600/400');"></div>
-                    <div class="slide" style="background-image: url('/api/placeholder/600/400');"></div>
-                    <div class="slide" style="background-image: url('/api/placeholder/600/400');"></div>
-                </div>
+                <!-- スライドショーを単一画像に変更 -->
+                <div class="therapist-modal-image" id="therapist-modal-image"></div>
                 <div id="therapist-modal-content"></div>
             </div>
             <div class="modal-footer">
