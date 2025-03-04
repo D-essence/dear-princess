@@ -584,29 +584,14 @@ footer {
     margin-top: 1rem;
 }
 
-.slideshow {
-    position: relative;
+/* セラピストモーダルの画像表示用スタイル（スライドショーの代わり） */
+.therapist-modal-image {
     width: 100%;
-    height: 300px; /* Reduced height */
-    overflow: hidden;
-    border-radius: 10px;
-    margin-bottom: 2rem;
-}
-
-.slide {
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
+    height: 300px;
     background-size: cover;
     background-position: center;
-    opacity: 0;
-    transition: opacity 1s ease-in-out;
-}
-
-.slide.active {
-    opacity: 1;
+    border-radius: 10px;
+    margin-bottom: 2rem;
 }
 
 /* Toast notification - 非表示 */
@@ -796,7 +781,7 @@ footer {
     .hero-content {
         padding-bottom: 10px;
         width: 100%;
-        bottom: 5%; /* 下部5%の位置に配置 */
+        bottom: 30%; /* 下部30%の位置に配置（上に移動） */
     }
     
     .hero p {
@@ -859,7 +844,7 @@ footer {
         max-height: 85vh;
     }
     
-    .slideshow {
+    .therapist-modal-image {
         height: 250px;
     }
 }
@@ -896,7 +881,7 @@ footer {
     .hero-content {
         padding-bottom: 10px;
         width: 100%;
-        bottom: 5%;
+        bottom: 30%; /* 30%に変更（上に移動） */
         position: absolute;
         z-index: 2; /* 確実に前面に */
     }
