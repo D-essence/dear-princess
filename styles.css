@@ -916,33 +916,54 @@ footer {
     }
 }
 
-/* カルーセル用スタイル - 改良版 */
+/* カルーセル用スタイル - 1カード中央表示+ループ版 */
 .carousel-container {
     position: relative;
     width: 100%;
     overflow: hidden;
     margin: 3rem 0;
-    padding: 0 20px; /* 左右にボタン表示スペースを確保 */
+    padding: 0;
 }
 
 .therapists-carousel {
     display: flex;
     transition: transform 0.5s ease;
     width: 100%;
-    align-items: center;
-    justify-content: center;
+    height: 450px; /* カードの高さを固定 */
+    position: relative;
 }
 
-/* therapist-cardクラスの既存スタイルを上書き */
 .therapists-carousel .therapist-card {
-    min-width: calc(100% / 3);
-    width: calc(100% / 3 - 40px);
-    margin: 0 20px;
-    flex-shrink: 0;
-    flex-grow: 0;
-    opacity: 1;
+    position: absolute;
+    width: 80%;
+    max-width: 350px;
     transition: all 0.5s ease;
-    transform: scale(1);
+    left: 50%;
+    transform: translateX(-50%) scale(0);
+    opacity: 0;
+    pointer-events: none;
+}
+
+.therapists-carousel .therapist-card.active {
+    transform: translateX(-50%) scale(1);
+    opacity: 1;
+    z-index: 10;
+    pointer-events: auto;
+}
+
+.therapists-carousel .therapist-card.prev,
+.therapists-carousel .therapist-card.next {
+    opacity: 0.5;
+    transform: translateX(-50%) scale(0.8);
+    z-index: 5;
+}
+
+.therapists-carousel .therapist-card.prev {
+    transform: translateX(-150%) scale(0.8);
+}
+
+.therapists-carousel .therapist-card.next {
+    transform: translateX(50%) scale(0.8);
 }
 
 .carousel-btn {
@@ -958,7 +979,7 @@ footer {
     justify-content: center;
     align-items: center;
     cursor: pointer;
-    z-index: 10;
+    z-index: 20;
     box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
     transition: all 0.3s ease;
 }
@@ -969,11 +990,11 @@ footer {
 }
 
 .prev-btn {
-    left: 5px;
+    left: 15px;
 }
 
 .next-btn {
-    right: 5px;
+    right: 15px;
 }
 
 .carousel-indicators {
@@ -981,6 +1002,8 @@ footer {
     justify-content: center;
     margin-top: 20px;
     gap: 10px;
+    position: relative;
+    z-index: 20;
 }
 
 .indicator {
@@ -997,45 +1020,34 @@ footer {
     transform: scale(1.2);
 }
 
-/* レスポンシブ対応 */
-@media (max-width: 992px) {
-    .therapists-carousel .therapist-card {
-        min-width: calc(100% / 2);
-        width: calc(100% / 2 - 40px);
-    }
-}
-
+/* モバイル対応 */
 @media (max-width: 768px) {
-    .therapists-carousel .therapist-card {
-        min-width: 90%;
-        width: 90%;
-        margin: 0 5%;
+    .therapists-carousel {
+        height: 420px;
     }
     
-    /* カルーセルボタンサイズ最適化 */
+    .therapists-carousel .therapist-card {
+        width: 90%;
+    }
+    
+    .therapists-carousel .therapist-card.prev,
+    .therapists-carousel .therapist-card.next {
+        display: none; /* モバイルでは前後のカードを非表示 */
+    }
+    
     .carousel-btn {
         width: 36px;
         height: 36px;
         font-size: 0.9rem;
     }
-    
-    .prev-btn {
-        left: 5px;
-    }
-    
-    .next-btn {
-        right: 5px;
-    }
-    
-    /* インジケーター最適化 */
-    .indicator {
-        width: 10px;
-        height: 10px;
-    }
 }
 
-/* 小型スマホ向け極限最適化 */
+/* 小型スマホ向け */
 @media (max-width: 480px) {
+    .therapists-carousel {
+        height: 400px;
+    }
+    
     .carousel-btn {
         width: 32px;
         height: 32px;
@@ -1047,4 +1059,5 @@ footer {
         height: 8px;
         margin: 0 4px;
     }
+}
 }
