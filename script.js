@@ -321,7 +321,7 @@ function showToast(message) {
     return;
 }
 
-// カルーセル機能
+// カルーセル機能 - 改良版
     const carousel = document.querySelector('.therapists-carousel');
     const prevBtn = document.querySelector('.prev-btn');
     const nextBtn = document.querySelector('.next-btn');
@@ -338,6 +338,26 @@ function showToast(message) {
             if (window.innerWidth <= 768) return 1;
             if (window.innerWidth <= 992) return 2;
             return 3;
+        }
+        
+        // カードの位置を中央揃えするための初期化
+        function setupCardLayout() {
+            // カードの幅を取得（マージンを含む）
+            let cardWidth;
+            const containerWidth = carousel.offsetWidth;
+            
+            if (window.innerWidth <= 768) {
+                cardWidth = containerWidth * 0.9; // モバイルでは90%幅
+            } else if (window.innerWidth <= 992) {
+                cardWidth = containerWidth / 2 - 40; // タブレットでは半分
+            } else {
+                cardWidth = containerWidth / 3 - 40; // PCでは3分の1
+            }
+            
+            // 各カードの幅を設定
+            therapistCards.forEach(card => {
+                card.style.width = `${cardWidth}px`;
+            });
         }
         
         // インジケーターの作成
@@ -364,15 +384,23 @@ function showToast(message) {
             if (index > maxIndex) index = maxIndex;
             
             currentIndex = index;
-            const offset = therapistCards[0].offsetWidth + 20; // カード幅+マージン
-            carousel.style.transform = `translateX(-${currentIndex * offset}px)`;
+            
+            // カードの実際の幅（含マージン）を取得
+            const cardRect = therapistCards[0].getBoundingClientRect();
+            const cardWidth = cardRect.width;
+            const cardMargin = parseInt(window.getComputedStyle(therapistCards[0]).marginRight) || 20;
+            const fullCardWidth = cardWidth + (cardMargin * 2);
+            
+            // 中央揃えのための移動量を計算
+            const offset = currentIndex * fullCardWidth;
+            carousel.style.transform = `translateX(-${offset}px)`;
             
             // インジケーター更新
             document.querySelectorAll('.indicator').forEach((ind, i) => {
                 ind.classList.toggle('active', i === currentIndex);
             });
             
-            // アクティブカード強調
+            // アクティブなカードを強調
             therapistCards.forEach((card, i) => {
                 const isActive = i >= currentIndex && i < currentIndex + cardsPerView;
                 card.style.opacity = isActive ? '1' : '0.7';
@@ -389,15 +417,23 @@ function showToast(message) {
             goToSlide(currentIndex + 1);
         });
         
-        // リサイズ時のカード数更新
+        // リサイズ時の処理
         window.addEventListener('resize', () => {
             const newCardsPerView = getCardsPerView();
             if (newCardsPerView !== cardsPerView) {
                 cardsPerView = newCardsPerView;
                 maxIndex = Math.max(0, therapistCards.length - cardsPerView);
+                
+                // レイアウトを再設定
+                setupCardLayout();
                 createIndicators();
-                if (currentIndex > maxIndex) goToSlide(maxIndex);
-                else goToSlide(currentIndex); // 表示の更新
+                
+                // 現在のインデックスが新しい最大値を超えていたら調整
+                if (currentIndex > maxIndex) {
+                    goToSlide(maxIndex);
+                } else {
+                    goToSlide(currentIndex); // 位置の再計算
+                }
             }
         });
         
@@ -427,7 +463,17 @@ function showToast(message) {
             }
         }
         
+        // キーボード操作対応
+        document.addEventListener('keydown', (e) => {
+            if (e.key === 'ArrowLeft') {
+                goToSlide(currentIndex - 1);
+            } else if (e.key === 'ArrowRight') {
+                goToSlide(currentIndex + 1);
+            }
+        });
+        
         // 初期化
+        setupCardLayout();
         createIndicators();
         goToSlide(0); // 初期状態を適用
     }
