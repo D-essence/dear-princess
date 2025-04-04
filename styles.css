@@ -915,3 +915,130 @@ footer {
         margin-left: 20px;
     }
 }
+
+/* カルーセル用スタイル */
+.carousel-container {
+    position: relative;
+    width: 100%;
+    overflow: hidden;
+    margin: 3rem 0;
+}
+
+.therapists-carousel {
+    display: flex;
+    transition: transform 0.5s ease;
+    width: 100%;
+}
+
+.therapist-card {
+    min-width: calc(100% / 3);
+    margin: 0 10px;
+    flex-shrink: 0;
+    opacity: 1;
+    transition: all 0.5s ease;
+}
+
+.carousel-btn {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    width: 40px;
+    height: 40px;
+    background-color: var(--primary-color);
+    color: black;
+    border-radius: 50%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    cursor: pointer;
+    z-index: 10;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
+    transition: all 0.3s ease;
+}
+
+.carousel-btn:hover {
+    background-color: #b08f26;
+    transform: translateY(-50%) scale(1.1);
+}
+
+.prev-btn {
+    left: 10px;
+}
+
+.next-btn {
+    right: 10px;
+}
+
+.carousel-indicators {
+    display: flex;
+    justify-content: center;
+    margin-top: 20px;
+    gap: 10px;
+}
+
+.indicator {
+    width: 12px;
+    height: 12px;
+    border-radius: 50%;
+    background-color: #555;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+.indicator.active {
+    background-color: var(--primary-color);
+    transform: scale(1.2);
+}
+
+/* レスポンシブ対応 */
+@media (max-width: 992px) {
+    .therapist-card {
+        min-width: calc(100% / 2);
+    }
+}
+
+@media (max-width: 768px) {
+    .therapist-card {
+        min-width: 100%;
+    }
+    
+    /* カルーセルボタンサイズ最適化 */
+    .carousel-btn {
+        width: 36px;
+        height: 36px;
+        font-size: 0.9rem;
+    }
+    
+    .prev-btn {
+        left: 5px;
+    }
+    
+    .next-btn {
+        right: 5px;
+    }
+    
+    /* インジケーター最適化 */
+    .indicator {
+        width: 10px;
+        height: 10px;
+    }
+}
+
+/* 小型スマホ向け極限最適化 */
+@media (max-width: 480px) {
+    .carousel-btn {
+        width: 32px;
+        height: 32px;
+        font-size: 0.8rem;
+    }
+    
+    .therapist-image {
+        height: 250px; /* 画像高さ調整 */
+    }
+    
+    .indicator {
+        width: 8px;
+        height: 8px;
+        margin: 0 4px;
+    }
+}
