@@ -916,34 +916,41 @@ footer {
     }
 }
 
-/* カルーセル用スタイル */
+/* カルーセル用スタイル - 改良版 */
 .carousel-container {
     position: relative;
     width: 100%;
     overflow: hidden;
     margin: 3rem 0;
+    padding: 0 20px; /* 左右にボタン表示スペースを確保 */
 }
 
 .therapists-carousel {
     display: flex;
     transition: transform 0.5s ease;
     width: 100%;
+    align-items: center;
+    justify-content: center;
 }
 
-.therapist-card {
+/* therapist-cardクラスの既存スタイルを上書き */
+.therapists-carousel .therapist-card {
     min-width: calc(100% / 3);
-    margin: 0 10px;
+    width: calc(100% / 3 - 40px);
+    margin: 0 20px;
     flex-shrink: 0;
+    flex-grow: 0;
     opacity: 1;
     transition: all 0.5s ease;
+    transform: scale(1);
 }
 
 .carousel-btn {
     position: absolute;
     top: 50%;
     transform: translateY(-50%);
-    width: 40px;
-    height: 40px;
+    width: 45px;
+    height: 45px;
     background-color: var(--primary-color);
     color: black;
     border-radius: 50%;
@@ -962,11 +969,11 @@ footer {
 }
 
 .prev-btn {
-    left: 10px;
+    left: 5px;
 }
 
 .next-btn {
-    right: 10px;
+    right: 5px;
 }
 
 .carousel-indicators {
@@ -992,14 +999,17 @@ footer {
 
 /* レスポンシブ対応 */
 @media (max-width: 992px) {
-    .therapist-card {
+    .therapists-carousel .therapist-card {
         min-width: calc(100% / 2);
+        width: calc(100% / 2 - 40px);
     }
 }
 
 @media (max-width: 768px) {
-    .therapist-card {
-        min-width: 100%;
+    .therapists-carousel .therapist-card {
+        min-width: 90%;
+        width: 90%;
+        margin: 0 5%;
     }
     
     /* カルーセルボタンサイズ最適化 */
@@ -1030,10 +1040,6 @@ footer {
         width: 32px;
         height: 32px;
         font-size: 0.8rem;
-    }
-    
-    .therapist-image {
-        height: 250px; /* 画像高さ調整 */
     }
     
     .indicator {
