@@ -320,3 +320,114 @@ function showToast(message) {
     // トースト表示を無効化
     return;
 }
+
+// カルーセル機能
+    const carousel = document.querySelector('.therapists-carousel');
+    const prevBtn = document.querySelector('.prev-btn');
+    const nextBtn = document.querySelector('.next-btn');
+    const therapistCards = document.querySelectorAll('.therapist-card');
+    const indicatorsContainer = document.querySelector('.carousel-indicators');
+    
+    if (carousel && prevBtn && nextBtn && therapistCards.length > 0) {
+        let currentIndex = 0;
+        let cardsPerView = getCardsPerView();
+        let maxIndex = Math.max(0, therapistCards.length - cardsPerView);
+        
+        // ウィンドウサイズに応じて表示カード数を取得
+        function getCardsPerView() {
+            if (window.innerWidth <= 768) return 1;
+            if (window.innerWidth <= 992) return 2;
+            return 3;
+        }
+        
+        // インジケーターの作成
+        function createIndicators() {
+            indicatorsContainer.innerHTML = '';
+            const totalIndicators = maxIndex + 1;
+            
+            for (let i = 0; i < totalIndicators; i++) {
+                const indicator = document.createElement('div');
+                indicator.classList.add('indicator');
+                if (i === 0) indicator.classList.add('active');
+                
+                indicator.addEventListener('click', () => {
+                    goToSlide(i);
+                });
+                
+                indicatorsContainer.appendChild(indicator);
+            }
+        }
+        
+        // スライド移動関数
+        function goToSlide(index) {
+            if (index < 0) index = 0;
+            if (index > maxIndex) index = maxIndex;
+            
+            currentIndex = index;
+            const offset = therapistCards[0].offsetWidth + 20; // カード幅+マージン
+            carousel.style.transform = `translateX(-${currentIndex * offset}px)`;
+            
+            // インジケーター更新
+            document.querySelectorAll('.indicator').forEach((ind, i) => {
+                ind.classList.toggle('active', i === currentIndex);
+            });
+            
+            // アクティブカード強調
+            therapistCards.forEach((card, i) => {
+                const isActive = i >= currentIndex && i < currentIndex + cardsPerView;
+                card.style.opacity = isActive ? '1' : '0.7';
+                card.style.transform = isActive ? 'scale(1)' : 'scale(0.95)';
+            });
+        }
+        
+        // ボタンイベントリスナー
+        prevBtn.addEventListener('click', () => {
+            goToSlide(currentIndex - 1);
+        });
+        
+        nextBtn.addEventListener('click', () => {
+            goToSlide(currentIndex + 1);
+        });
+        
+        // リサイズ時のカード数更新
+        window.addEventListener('resize', () => {
+            const newCardsPerView = getCardsPerView();
+            if (newCardsPerView !== cardsPerView) {
+                cardsPerView = newCardsPerView;
+                maxIndex = Math.max(0, therapistCards.length - cardsPerView);
+                createIndicators();
+                if (currentIndex > maxIndex) goToSlide(maxIndex);
+                else goToSlide(currentIndex); // 表示の更新
+            }
+        });
+        
+        // スワイプ対応（モバイル向け）
+        let touchStartX = 0;
+        let touchEndX = 0;
+        
+        carousel.addEventListener('touchstart', (e) => {
+            touchStartX = e.changedTouches[0].screenX;
+        });
+        
+        carousel.addEventListener('touchend', (e) => {
+            touchEndX = e.changedTouches[0].screenX;
+            handleSwipe();
+        });
+        
+        function handleSwipe() {
+            // スマホサイズに応じてスワイプ感度調整
+            const swipeThreshold = window.innerWidth < 480 ? 30 : 50;
+            
+            if (touchEndX < touchStartX - swipeThreshold) {
+                // 左スワイプ
+                goToSlide(currentIndex + 1);
+            } else if (touchEndX > touchStartX + swipeThreshold) {
+                // 右スワイプ
+                goToSlide(currentIndex - 1);
+            }
+        }
+        
+        // 初期化
+        createIndicators();
+        goToSlide(0); // 初期状態を適用
+    }
