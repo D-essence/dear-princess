@@ -321,7 +321,7 @@ function showToast(message) {
     return;
 }
 
-// カルーセル機能 - 改良版
+// カルーセル機能 - 1カード中央表示+ループ版
     const carousel = document.querySelector('.therapists-carousel');
     const prevBtn = document.querySelector('.prev-btn');
     const nextBtn = document.querySelector('.next-btn');
@@ -330,42 +330,49 @@ function showToast(message) {
     
     if (carousel && prevBtn && nextBtn && therapistCards.length > 0) {
         let currentIndex = 0;
-        let cardsPerView = getCardsPerView();
-        let maxIndex = Math.max(0, therapistCards.length - cardsPerView);
+        const totalCards = therapistCards.length;
         
-        // ウィンドウサイズに応じて表示カード数を取得
-        function getCardsPerView() {
-            if (window.innerWidth <= 768) return 1;
-            if (window.innerWidth <= 992) return 2;
-            return 3;
+        // カードの初期位置設定
+        function setupCards() {
+            therapistCards.forEach((card, index) => {
+                // 最初は全てのカードを非表示に
+                card.classList.remove('active', 'prev', 'next');
+            });
+            
+            // アクティブ、前、次のカードを設定
+            updateCardClasses();
         }
         
-        // カードの位置を中央揃えするための初期化
-        function setupCardLayout() {
-            // カードの幅を取得（マージンを含む）
-            let cardWidth;
-            const containerWidth = carousel.offsetWidth;
-            
-            if (window.innerWidth <= 768) {
-                cardWidth = containerWidth * 0.9; // モバイルでは90%幅
-            } else if (window.innerWidth <= 992) {
-                cardWidth = containerWidth / 2 - 40; // タブレットでは半分
-            } else {
-                cardWidth = containerWidth / 3 - 40; // PCでは3分の1
-            }
-            
-            // 各カードの幅を設定
-            therapistCards.forEach(card => {
-                card.style.width = `${cardWidth}px`;
+        // カードのクラスを更新
+        function updateCardClasses() {
+            therapistCards.forEach((card, index) => {
+                card.classList.remove('active', 'prev', 'next');
+                
+                if (index === currentIndex) {
+                    card.classList.add('active');
+                } else if (index === getPrevIndex()) {
+                    card.classList.add('prev');
+                } else if (index === getNextIndex()) {
+                    card.classList.add('next');
+                }
             });
+        }
+        
+        // ループするための前のインデックスを取得
+        function getPrevIndex() {
+            return (currentIndex - 1 + totalCards) % totalCards;
+        }
+        
+        // ループするための次のインデックスを取得
+        function getNextIndex() {
+            return (currentIndex + 1) % totalCards;
         }
         
         // インジケーターの作成
         function createIndicators() {
             indicatorsContainer.innerHTML = '';
-            const totalIndicators = maxIndex + 1;
             
-            for (let i = 0; i < totalIndicators; i++) {
+            for (let i = 0; i < totalCards; i++) {
                 const indicator = document.createElement('div');
                 indicator.classList.add('indicator');
                 if (i === 0) indicator.classList.add('active');
@@ -380,62 +387,37 @@ function showToast(message) {
         
         // スライド移動関数
         function goToSlide(index) {
-            if (index < 0) index = 0;
-            if (index > maxIndex) index = maxIndex;
+            // ループ処理（totalCards内に収める）
+            if (index < 0) index = totalCards - 1;
+            if (index >= totalCards) index = 0;
             
             currentIndex = index;
             
-            // カードの実際の幅（含マージン）を取得
-            const cardRect = therapistCards[0].getBoundingClientRect();
-            const cardWidth = cardRect.width;
-            const cardMargin = parseInt(window.getComputedStyle(therapistCards[0]).marginRight) || 20;
-            const fullCardWidth = cardWidth + (cardMargin * 2);
-            
-            // 中央揃えのための移動量を計算
-            const offset = currentIndex * fullCardWidth;
-            carousel.style.transform = `translateX(-${offset}px)`;
-            
-            // インジケーター更新
+            // カードとインジケーターの更新
+            updateCardClasses();
+            updateIndicators();
+        }
+        
+        // インジケーター更新
+        function updateIndicators() {
             document.querySelectorAll('.indicator').forEach((ind, i) => {
                 ind.classList.toggle('active', i === currentIndex);
             });
-            
-            // アクティブなカードを強調
-            therapistCards.forEach((card, i) => {
-                const isActive = i >= currentIndex && i < currentIndex + cardsPerView;
-                card.style.opacity = isActive ? '1' : '0.7';
-                card.style.transform = isActive ? 'scale(1)' : 'scale(0.95)';
-            });
+        }
+        
+        // 前のスライドへ
+        function goToPrev() {
+            goToSlide(getPrevIndex());
+        }
+        
+        // 次のスライドへ
+        function goToNext() {
+            goToSlide(getNextIndex());
         }
         
         // ボタンイベントリスナー
-        prevBtn.addEventListener('click', () => {
-            goToSlide(currentIndex - 1);
-        });
-        
-        nextBtn.addEventListener('click', () => {
-            goToSlide(currentIndex + 1);
-        });
-        
-        // リサイズ時の処理
-        window.addEventListener('resize', () => {
-            const newCardsPerView = getCardsPerView();
-            if (newCardsPerView !== cardsPerView) {
-                cardsPerView = newCardsPerView;
-                maxIndex = Math.max(0, therapistCards.length - cardsPerView);
-                
-                // レイアウトを再設定
-                setupCardLayout();
-                createIndicators();
-                
-                // 現在のインデックスが新しい最大値を超えていたら調整
-                if (currentIndex > maxIndex) {
-                    goToSlide(maxIndex);
-                } else {
-                    goToSlide(currentIndex); // 位置の再計算
-                }
-            }
-        });
+        prevBtn.addEventListener('click', goToPrev);
+        nextBtn.addEventListener('click', goToNext);
         
         // スワイプ対応（モバイル向け）
         let touchStartX = 0;
@@ -451,29 +433,38 @@ function showToast(message) {
         });
         
         function handleSwipe() {
-            // スマホサイズに応じてスワイプ感度調整
             const swipeThreshold = window.innerWidth < 480 ? 30 : 50;
             
             if (touchEndX < touchStartX - swipeThreshold) {
-                // 左スワイプ
-                goToSlide(currentIndex + 1);
+                // 左スワイプ => 次へ
+                goToNext();
             } else if (touchEndX > touchStartX + swipeThreshold) {
-                // 右スワイプ
-                goToSlide(currentIndex - 1);
+                // 右スワイプ => 前へ
+                goToPrev();
             }
         }
         
         // キーボード操作対応
         document.addEventListener('keydown', (e) => {
             if (e.key === 'ArrowLeft') {
-                goToSlide(currentIndex - 1);
+                goToPrev();
             } else if (e.key === 'ArrowRight') {
-                goToSlide(currentIndex + 1);
+                goToNext();
             }
         });
         
+        // 自動スライド（オプション - 必要なければコメントアウト）
+        // const autoSlideInterval = setInterval(goToNext, 5000);
+        
+        // ユーザー操作で自動スライドを一時停止（オプション）
+        // const pauseAutoSlide = () => {
+        //     clearInterval(autoSlideInterval);
+        // };
+        // prevBtn.addEventListener('click', pauseAutoSlide);
+        // nextBtn.addEventListener('click', pauseAutoSlide);
+        // carousel.addEventListener('touchstart', pauseAutoSlide);
+        
         // 初期化
-        setupCardLayout();
         createIndicators();
-        goToSlide(0); // 初期状態を適用
+        setupCards();
     }
