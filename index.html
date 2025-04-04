@@ -95,11 +95,18 @@
         </div>
     </section>
     
-    <!-- Therapists Section -->
-    <section id="therapists" class="container">
-        <h2 class="section-title">セラピスト紹介</h2>
-        <p class="section-subtitle">アイドル級・国宝級の容姿を持つ<br>厳選されたセラピスト</p>
-        <div class="therapists">
+<!-- Therapists Section -->
+<section id="therapists" class="container">
+    <h2 class="section-title">セラピスト紹介</h2>
+    <p class="section-subtitle">アイドル級・国宝級の容姿を持つ<br>厳選されたセラピスト</p>
+    
+    <div class="carousel-container">
+        <div class="carousel-btn prev-btn">
+            <i class="fas fa-chevron-left"></i>
+        </div>
+        
+        <div class="therapists-carousel">
+            <!-- 以下の4つのtherapist-cardはそのまま保持してください -->
             <!-- Therapist 1 -->
             <div class="therapist-card" data-therapist="haruki">
                 <div class="therapist-image" style="background-image: url('images/man1.jpg');"></div>
@@ -144,7 +151,14 @@
                 </div>
             </div>
         </div>
-    </section>
+        
+        <div class="carousel-btn next-btn">
+            <i class="fas fa-chevron-right"></i>
+        </div>
+    </div>
+    
+    <div class="carousel-indicators"></div>
+</section>
     
     <!-- Plans Section -->
     <section id="plans" class="container">
